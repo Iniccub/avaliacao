@@ -564,6 +564,10 @@ with col_download2:
                             ].copy()
                         
                         if not dados_detalhados.empty:
+                            # Remover a coluna 'Origem' antes de salvar no Excel
+                            if 'Origem' in dados_detalhados.columns:
+                                dados_detalhados = dados_detalhados.drop('Origem', axis=1)
+                            
                             # Gerar nome do arquivo usando o padrão existente
                             nome_arquivo = gerar_nome_arquivo_avaliacao(
                                 row['Fornecedor'],
