@@ -150,7 +150,7 @@ def gerar_excel_recuperacao(avaliacao_data, origem):
         # Criar arquivo Excel em memória
         output = BytesIO()
         with pd.ExcelWriter(output, engine='openpyxl') as writer:
-            df_avaliacao.to_excel(writer, index=False)
+            df_avaliacao.to_excel(writer, index=False, sheet_name='Avaliação')
         output.seek(0)
         
         return output
