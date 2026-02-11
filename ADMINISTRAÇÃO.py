@@ -56,7 +56,9 @@ except Exception as e:
 
 # Listas fixas
 meses_raw = ['31/01/2025', '28/02/2025', '31/03/2025', '30/04/2025', '31/05/2025', '30/06/2025', '31/07/2025', '31/08/2025',
-         '30/09/2025', '31/10/2025', '30/11/2025', '31/12/2025']
+         '30/09/2025', '31/10/2025', '30/11/2025', '31/12/2025',
+         '31/01/2026', '28/02/2026', '31/03/2026', '30/04/2026', '31/05/2026', '30/06/2026', '31/07/2026', '31/08/2026',
+         '30/09/2026', '31/10/2026', '30/11/2026', '31/12/2026']
 
 # Dicionário para converter números de mês em abreviações em português
 meses_abrev = {
@@ -71,9 +73,18 @@ meses = [f"{meses_abrev[data.split('/')[1]]}/{data.split('/')[2][-2:]}" for data
 # Obter o mês atual e o mês anterior para pré-seleção
 import datetime
 mes_atual = datetime.datetime.now().month
+ano_atual = datetime.datetime.now().year
 mes_anterior = mes_atual - 1 if mes_atual > 1 else 12
-# Ajustar o índice para a lista de meses (índice começa em 0, meses começam em 1)
-indice_mes_anterior = mes_anterior - 1
+ano_anterior = ano_atual if mes_atual > 1 else ano_atual - 1
+
+# Calcular o índice com base no ano e mês
+# O índice 0 corresponde a Jan/2025
+offset_anos = (ano_anterior - 2025) * 12
+indice_mes_anterior = (mes_anterior - 1) + offset_anos
+
+# Garantir que o índice esteja dentro dos limites
+if indice_mes_anterior < 0 or indice_mes_anterior >= len(meses):
+    indice_mes_anterior = 0
 # Opções de respostas
 opcoes = ['Atende Totalmente', 'Atende Parcialmente', 'Não Atende', 'Não se Aplica']
 
