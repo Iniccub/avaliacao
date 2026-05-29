@@ -6,13 +6,14 @@ unidades = [
     'CSA-CT',
     'CSA-NL',
     'CSA-GZ',
-    'CSA-DV',
+    'CSA-DV I',
     'EPSA',
     'ESA',
     'AIACOM',
     'ILALI',
     'ADEODATO',
-    'SIC SEDE'
+    'SIC SEDE',
+    'CSA-DV II'
 ]
 
 # Funções para manipular unidades no MongoDB
